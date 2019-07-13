@@ -1,2 +1,2 @@
 # MiniZinc
-MiniZinc models
+MiniZinc models for CS 4660 (Fall 2019).
