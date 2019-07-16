@@ -1,23 +1,27 @@
-int: n = 4;
-array[0..n-1] of var 0..n: s;
+int: n = 5;
+% MiniZinc uses sets to define ranges.
+set of int: D = 0..n-1;
+array[D] of var D: series;
 
-constraint forall(i in 0..n-1) (
-   s[i] = (sum(j in 0..n-1)(s[j]=i)));
+constraint 
+  forall(i in D) (
+    series[i] = sum(j in D)(series[j]==i)
+    );
 
-% In configuration include -a as an additional command line argument.
+% In configuration include -a as an additional command line argument to get all solutions.
 solve satisfy;   
 
-output [ "s = \(s);\n" ] ;
+output [ "\nseries = \(series);\n\n" ] ;
 
 
-/* From Dynamic optimization course 2:00
+/* From Dynamic Optimization course Week 3 Video CP-3 2:00
 
 int n = 5;
 range D = 0..n-1;
 var{int} series[D] in D;
 solve {
-   forall(k in D)
-   series[k] = sum(i in D) (series[i]=k);
+   forall(i in D)
+     series[i] = sum(j in D)(series[j]=i);
 }
 
 */
