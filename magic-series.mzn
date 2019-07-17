@@ -8,7 +8,7 @@ constraint
     series[i] = sum(j in D)(series[j]==i)
     );
 
-% In configuration include -a as an additional command line argument to get all solutions.
+% In configuration click User-defined behavior, check Print intermediate solutions. Stop after 0 (which means don't stop) to get all solutions.
 solve satisfy;   
 
 output [ "\nseries = \(series);\n\n" ] ;
